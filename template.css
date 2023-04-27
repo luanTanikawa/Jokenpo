@@ -1,0 +1,116 @@
+* {
+	margin: 0px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+	background-color: #555;
+}
+
+.titulo {
+	text-align: center;
+	font-weight: 700;
+	font-size: 64px;
+	margin-top: 20px;
+
+	color: #aaa;
+}
+
+.areaResultado {
+	background-color: #aaa;
+	margin: 0px 30px;
+	padding: 20px;
+	margin-top: 15px;
+	border-radius: 20px;
+}
+		.resultado {
+			text-align: center;
+			font-size: 24px;
+		}
+
+			.resultado div {
+				margin-top: 15px;
+			}
+
+		.tituloCampos{
+			display: flex;
+			margin-top: 15px;
+		}
+
+			.seuCampo{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				font-size: 22px;
+			}
+				.contador{
+					margin-top: 15px;
+					font-size: 24px;
+					display: flex;
+				}
+					.contador-text{
+						margin-right: 10px;
+					}
+
+				.seuCampo-img{
+					margin-top: 10px;
+					border: 3px dashed #000;
+					height: 340px;
+					width: 320px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+					.seuCampo-img img{
+						width: 200px;
+						object-position: center;
+
+					}
+
+				.seuCampo-escolha {
+					margin-top: 20px;
+					display: flex;
+					font-size: 18px;
+				}
+
+						.seuCampo-escolha input{
+							margin: 0px 5px;
+						}
+
+						.seuCampo-escolha label{
+							margin-right: 10px;
+						}
+
+
+
+			.campoComputador{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				font-size: 22px;
+
+			}
+				.campoComputador-img{
+					margin-top: 10px;
+					border: 3px dashed #000;
+					height: 340px;
+					width: 320px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.campoComputador-img img{
+					width: 200px;
+					object-position: center;
+
+				}
+
+
+.botao-area {
+	display: flex;
+	justify-content: center;
+}
