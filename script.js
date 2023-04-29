@@ -1,97 +1,93 @@
-    
-function reset () {
-    computador = Math.floor(Math.random() * 100)
-        if (computador <= 33) {
-            escolhaC = 'PEDRA'
-            document.querySelector('.campoComputador-img').innerHTML = "<img src='imagens/pedra.png'>"
+let botao = document.querySelector('button')
+let campoJogador = document.querySelector('.seuCampo-img')
+let campoComputador = document.querySelector('.campoComputador-img')
+let contador = [...document.querySelectorAll('.contador-number')]
+let resultado = document.querySelector('.resultado')
 
-        } else if (computador > 33 && computador <= 66) {
-            escolhaC = 'PAPEL'
-            document.querySelector('.campoComputador-img').innerHTML = "<img src='imagens/papel.png'>"
+let contadorJogador = 0
+let contadorComputador = 0
 
-        } else if (computador > 66) {
-            escolhaC = 'TESOURA'
-            document.querySelector('.campoComputador-img').innerHTML = "<img src='imagens/tesoura.png'>"
-        }
+function computador() {
+    let aleatorio = Math.floor(Math.random() * 100)
+    let opcaoSelecionada = ''
 
+    if (aleatorio <= 33) {
+        opcaoSelecionada = 'pedra'
+        campoComputador.innerHTML = '<img src="imagens/pedra.png" alt="">'
 
-        console.log('O computador escolheu:' + escolhaC)
-        return escolhaC
-}
+    } else if (aleatorio >= 34 && aleatorio <= 66) {
+        opcaoSelecionada = 'papel'
+        campoComputador.innerHTML = '<img src="imagens/papel.png" alt="">'
 
-let j = 0
-let c = 0
-
-function jogar () {
-    let escolhaC = reset()
-    
-
-    if (document.querySelectorAll("input:checked")[0].value == 'pedra') {
-        escolhaJ = document.querySelectorAll("input:checked")[0].value == 'pedra'
-        document.querySelector('.seuCampo-img').innerHTML = "<img src='imagens/pedra.png'>"
-
-        if (escolhaC == 'PEDRA') {
-            console.log('EMPATE')
-            document.querySelector('.resultado div').innerHTML = 'EMPATE'
-
-        } else if (escolhaC == 'PAPEL') {
-            console.log('O COMPUTADOR VENCEU')
-            document.querySelector('.resultado div').innerHTML = 'O COMPUTADOR VENCEU'
-            c += 1
-            document.querySelector('.campoComputador .contador-number').innerHTML = c
-
-
-        } else if (escolhaC == 'TESOURA') {
-            console.log('O JOGADOR VENCEU')
-            document.querySelector('.resultado div').innerHTML = 'O JOGADOR VENCEU'
-            j += 1
-            document.querySelector('.seuCampo .contador-number').innerHTML = j
-
-        }
-
-    } else if (document.querySelectorAll("input:checked")[0].value == 'papel') {
-        escolhaJ = document.querySelectorAll("input:checked")[0].value == 'papel'
-        document.querySelector('.seuCampo-img').innerHTML = "<img src='imagens/papel.png'>"
-        if (escolhaC == 'PEDRA') {
-            console.log('O JOGADOR VENCEU')
-            document.querySelector('.resultado div').innerHTML = 'O JOGADOR VENCEU'
-            j += 1
-            document.querySelector('.seuCampo .contador-number').innerHTML = j
-
-
-        } else if (escolhaC == 'PAPEL') {
-            console.log('EMPATE')
-            document.querySelector('.resultado div').innerHTML = 'EMPATE'
-
-        } else if (escolhaC == 'TESOURA') {
-            console.log('O COMPUTADOR VENCEU')
-            document.querySelector('.resultado div').innerHTML = 'O COMPUTADOR VENCEU'
-            c += 1
-            document.querySelector('.campoComputador .contador-number').innerHTML = c
-
-        }
-
-    } else if (document.querySelectorAll("input:checked")[0].value == 'tesoura') {
-        escolhaJ = document.querySelectorAll("input:checked")[0].value == 'tesoura'
-        document.querySelector('.seuCampo-img').innerHTML = "<img src='imagens/tesoura.png'>"
-
-        if (escolhaC == 'PEDRA') {
-            console.log('O COMPUTADOR VENCEU')
-            document.querySelector('.resultado div').innerHTML = 'O COMPUTADOR VENCEU'
-            c += 1
-            document.querySelector('.campoComputador .contador-number').innerHTML = c
-
-
-        } else if (escolhaC == 'PAPEL') {
-            console.log('O JOGADOR VENCEU')
-            document.querySelector('.resultado div').innerHTML = 'O JOGADOR VENCEU'
-            j += 1
-            document.querySelector('.seuCampo .contador-number').innerHTML = j
-
-
-        } else if (escolhaC == 'TESOURA') {
-            console.log('EMPATE')
-            document.querySelector('.resultado div').innerHTML = 'EMPATE'
-        }
+    } else if (aleatorio >= 67) {
+        opcaoSelecionada = 'tesoura'
+        campoComputador.innerHTML = '<img src="imagens/tesoura.png" alt="">'
     }
+
+    return opcaoSelecionada
 }
+
+botao.addEventListener('click', () => {
+    let opcaoSelecionada = document.querySelector('input[type="radio"]:checked')
+    let opcaoComputador = computador()
+
+    if (resultado.children.length == 1) {
+        resultado.children[0].remove()
+    }
+
+    switch (opcaoSelecionada.value) {
+        case 'pedra':
+            campoJogador.innerHTML = '<img src="imagens/pedra.png" alt="">'
+            if (opcaoComputador == 'pedra') {
+                resultado.innerHTML = '<div>Empate</div>'
+
+            } else if (opcaoComputador == 'papel') {
+                contadorComputador++
+                contador[1].innerHTML = contadorComputador
+                resultado.innerHTML = '<div>O computador venceu</div>'
+
+            } else if (opcaoComputador == 'tesoura') {
+                contadorJogador++
+                contador[0].innerHTML = contadorJogador
+                resultado.innerHTML = '<div>O jogador venceu</div>'
+            }
+            break
+
+        case 'papel':
+            campoJogador.innerHTML = '<img src="imagens/papel.png" alt="">'
+
+            if (opcaoComputador == 'pedra') {
+                contadorJogador++
+                contador[0].innerHTML = contadorJogador
+                resultado.innerHTML = '<div>O jogador venceu</div>'
+
+            } else if (opcaoComputador == 'papel') {
+                resultado.innerHTML = '<div>Empate</div>'
+
+            } else if (opcaoComputador == 'tesoura') {
+                contadorComputador++
+                contador[1].innerHTML = contadorComputador
+                resultado.innerHTML = '<div>O computador venceu</div>'
+            }
+            break
+
+        case 'tesoura':
+            campoJogador.innerHTML = '<img src="imagens/tesoura.png" alt="">'
+
+            if (opcaoComputador == 'pedra') {
+                contadorComputador++
+                contador[1].innerHTML = contadorComputador
+                resultado.innerHTML = '<div>O computador venceu</div>'
+
+            } else if (opcaoComputador == 'papel') {
+                contadorJogador++
+                contador[0].innerHTML = contadorJogador
+                resultado.innerHTML = '<div>O jogador venceu</div>'
+
+            } else if (opcaoComputador == 'tesoura') {
+                resultado.innerHTML = '<div>Empate</div>'
+            }
+            break
+    }
+})
+
